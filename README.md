@@ -4,7 +4,7 @@ This is a sample  code for  dependency injection and mocking.
 2. Mocking the DB call 
 3. Ignorning error handling 
 4. Ignorning loging
-5. There are many libraries for mocking and generating mocks, i have not used it.  
+5. Generated mock files using mockery. I also have test that do not use it. 
 
 
 
