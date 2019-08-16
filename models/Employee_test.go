@@ -60,3 +60,31 @@ func TestGetAllEmployeesWithSomeBusinessLogicError(t *testing.T) {
 	assert.NotNil(t, err)
 
 }
+
+func TestGetAllEmployeesWithSomeBusinessLogicMockery(t *testing.T) {
+	db := &MockDatastore{}
+	env := &Env{DB: db}
+	emps := make([]*Employee, 0)
+	emps = append(emps, &Employee{ID: 1, Location: "l1", Name: "n1"})
+	emps = append(emps, &Employee{ID: 2, Location: "l2", Name: "n2"})
+	emps = append(emps, &Employee{ID: 3, Location: "l3", Name: "n3"})
+	db.On("GetAllEmployees").Return(emps, nil).Once()
+	emps, err := GetAllEmployeesWithSomeBusinessLogic(env)
+	expected := []*Employee{&Employee{ID: 1, Location: "l1", Name: "n1"}}
+	assert.Equal(t, expected, emps)
+	assert.Nil(t, err)
+	assert.NotNil(t, emps)
+
+}
+
+func TestGetAllEmployeesWithSomeBusinessLogicMockeryError(t *testing.T) {
+	db := &MockDatastore{}
+	env := &Env{DB: db}
+	cantConntecError := errors.New("Error connecting")
+	db.On("GetAllEmployees").Return(nil, cantConntecError).Once()
+	emps, err := GetAllEmployeesWithSomeBusinessLogic(env)
+	assert.Nil(t, emps)
+	assert.NotNil(t, err)
+	assert.Equal(t, cantConntecError, err)
+
+}
