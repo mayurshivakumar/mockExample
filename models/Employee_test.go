@@ -8,6 +8,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+// tests with out mockery 
 type mockDB struct{}
 
 func (mdb *mockDB) GetAllEmployees() ([]*Employee, error) {
@@ -61,6 +62,8 @@ func TestGetAllEmployeesWithSomeBusinessLogicError(t *testing.T) {
 
 }
 
+
+// mockery test example
 func TestGetAllEmployeesWithSomeBusinessLogicMockery(t *testing.T) {
 	db := &MockDatastore{}
 	env := &Env{DB: db}
@@ -77,6 +80,7 @@ func TestGetAllEmployeesWithSomeBusinessLogicMockery(t *testing.T) {
 
 }
 
+// mockery test example
 func TestGetAllEmployeesWithSomeBusinessLogicMockeryError(t *testing.T) {
 	db := &MockDatastore{}
 	env := &Env{DB: db}
