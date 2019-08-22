@@ -53,3 +53,18 @@ GO
 SELECT * FROM TestSchema.Employees;
 GO
 ```
+
+Dependency injection
+1) Dependency injection is a technique whereby one object supplies the dependencies of another object.
+2) Things that are commonly injected to handle. Database connection, loggers, configurations....
+3) Can be achieved through constructor, setter methods and interfaces
+
+
+Advantages
+1) Helps in unit testing. Along with mocking.
+2) Extending the application becomes easy.
+3) Helps create loosely coupled objects.
+
+Disadvantages
+1) Can be little complex to set up and learn initially.
+2) Usually implemented with reflection or dynamic programming. Does not work well with IDE automation 
